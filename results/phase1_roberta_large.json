@@ -1,0 +1,12 @@
+{
+  "model": "roberta-large",
+  "model_key": "roberta_large",
+  "phase": "phase1",
+  "training_time_seconds": 1347.1084415912628,
+  "train_loss": 0.36230920282999673,
+  "test_balanced_accuracy": 0.687727335677254,
+  "test_f1_macro": 0.7196684913290627,
+  "test_cohen_kappa": 0.4478566463234025,
+  "test_samples": 15976,
+  "timestamp": "2026-03-22T16:49:59.748096"
+}

@@ -1,0 +1,12 @@
+{
+  "model": "DeBERTa-v3-NLI",
+  "model_key": "nli_deberta",
+  "phase": "phase1",
+  "method": "zero-shot",
+  "test_balanced_accuracy": 0.5066348005992724,
+  "test_f1_macro": 0.4851037358350987,
+  "test_cohen_kappa": 0.01789436551967416,
+  "n_samples": 2000,
+  "eval_time_seconds": 108.89506959915161,
+  "timestamp": "2026-03-22T16:52:00.327688"
+}

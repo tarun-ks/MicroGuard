@@ -1,0 +1,11 @@
+{
+  "model": "google/gemma-3-270m-it",
+  "model_key": "gemma3_270m",
+  "test_balanced_accuracy": 0.6663010392142874,
+  "test_f1_macro": 0.6752060730959349,
+  "test_cohen_kappa": 0.3514243537799554,
+  "eval_time_seconds": 195.86045002937317,
+  "per_sample_latency_ms": 97.93022501468658,
+  "n_samples": 2000,
+  "n_skipped": 0
+}

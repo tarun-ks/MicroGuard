@@ -1,0 +1,17 @@
+{
+  "model": "google/gemma-3-270m-it",
+  "model_key": "gemma3_270m",
+  "phase": "phase2_maxquality",
+  "training_time_seconds": 6394.228795528412,
+  "training_time_formatted": "106.6min",
+  "peak_memory_mb": 27232.873984,
+  "train_loss": 0.011325320807538066,
+  "train_samples": 98666,
+  "test_balanced_accuracy": 0.6698859717961523,
+  "test_f1_macro": 0.6874707003781604,
+  "test_cohen_kappa": 0.37873175128064096,
+  "test_samples": 2000,
+  "per_sample_latency_ms": 59.607763171195984,
+  "config": "full_98K+focal_loss+4lora+constrained_decode",
+  "timestamp": "2026-03-23T00:41:52.428339"
+}

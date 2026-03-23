@@ -1,0 +1,16 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_key": "qwen05b",
+  "phase": "phase1",
+  "training_time_seconds": 2307.2016537189484,
+  "training_time_formatted": "38.5min",
+  "peak_memory_mb": 28903.547904,
+  "train_loss": 0.0680443964322408,
+  "train_samples": 40000,
+  "test_balanced_accuracy": 0.6687118023352595,
+  "test_f1_macro": 0.6883468834688347,
+  "test_cohen_kappa": 0.38153755142649703,
+  "test_samples": 2000,
+  "per_sample_latency_ms": 58.39496040344238,
+  "timestamp": "2026-03-22T13:34:54.830201"
+}

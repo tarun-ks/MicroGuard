@@ -1,0 +1,11 @@
+{
+  "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "model_key": "smollm135m",
+  "test_balanced_accuracy": 0.6563101947635015,
+  "test_f1_macro": 0.6345337864938465,
+  "test_cohen_kappa": 0.27518787548931356,
+  "eval_time_seconds": 133.36970114707947,
+  "per_sample_latency_ms": 66.68485057353973,
+  "n_samples": 2000,
+  "n_skipped": 0
+}

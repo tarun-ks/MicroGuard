@@ -1,0 +1,16 @@
+{
+  "model": "google/gemma-3-1b-it",
+  "model_key": "gemma3_1b",
+  "phase": "phase1",
+  "training_time_seconds": 5073.890017271042,
+  "training_time_formatted": "84.6min",
+  "peak_memory_mb": 26287.942144,
+  "train_loss": 0.07381907739639282,
+  "train_samples": 40000,
+  "test_balanced_accuracy": 0.6898379348885877,
+  "test_f1_macro": 0.7125948320481349,
+  "test_cohen_kappa": 0.42972687449953906,
+  "test_samples": 2000,
+  "per_sample_latency_ms": 90.2319552898407,
+  "timestamp": "2026-03-22T15:08:04.201856"
+}
