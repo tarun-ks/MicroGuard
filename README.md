@@ -1,8 +1,26 @@
 # MicroGuard
 
-A lightweight faithfulness classifier for RAG systems, built on sub-billion parameter language models.
+**Free, real-time hallucination detection for any RAG pipeline.**
+A 270M model outperforms a 1.1B model. All models run locally in <100ms at $0/eval.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE)
+[![Models on HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Models-HuggingFace-yellow)](https://huggingface.co/tarun5986)
+[![Demo](https://img.shields.io/badge/%F0%9F%8E%AE%20Live-Demo-blue)](https://huggingface.co/spaces/tarun5986/MicroGuard)
+[![Paper](https://img.shields.io/badge/Paper-IEEE%20Access-orange)]()
+[![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue)]()
+
+---
+
+> **Key finding:** Architecture quality matters more than parameter count.
+> Gemma-270M (270M params) outperforms TinyLlama (1.1B params) by **2 percentage points** in balanced accuracy and **8.6 points** in F1-score — with 4x fewer parameters.
+
+---
+
+## Try it now — no install needed
+
+**[Launch Live Demo on HuggingFace Spaces](https://huggingface.co/spaces/tarun5986/MicroGuard)**
+
+Paste any context + question + answer and get a FAITHFUL / UNFAITHFUL verdict instantly.
 
 ## What is this?
 
@@ -10,26 +28,31 @@ If you're running a RAG pipeline, you need to know whether the generated answers
 
 MicroGuard takes a different approach: fine-tune small language models (135M-1B parameters) to do the same job locally, for free, in under 100ms.
 
-## Results
+## Available Models
 
-We benchmarked 6 generative SLMs against RoBERTa encoder baselines and a zero-shot NLI baseline, evaluated on a combined test set from RAGBench, RAGTruth, and HaluBench (127K+ examples total).
+| Model | Params | Bal. Acc. | F1 | Latency | HuggingFace |
+|-------|--------|-----------|-----|---------|-------------|
+| **Gemma-1B** | 1.0B | **69.4%** | **0.721** | 88ms | [Download](https://huggingface.co/tarun5986/MicroGuard-Gemma-1B) |
+| Qwen-0.5B | 500M | 67.6% | 0.698 | 56ms | [Download](https://huggingface.co/tarun5986/MicroGuard-Qwen-0.5B) |
+| Gemma-270M | 270M | 67.0% | 0.688 | 60ms | [Download](https://huggingface.co/tarun5986/MicroGuard-Gemma-270M) |
+| TinyLlama-1.1B | 1.1B | 64.7% | 0.589 | 53ms | [Download](https://huggingface.co/tarun5986/MicroGuard-TinyLlama-1.1B) |
+| SmolLM-135M | 135M | 64.3% | 0.661 | 72ms | [Download](https://huggingface.co/tarun5986/MicroGuard-SmolLM-135M) |
 
-| Model | Params | Balanced Acc. | F1 | Latency | Cost/eval |
-|-------|--------|--------------|-----|---------|-----------|
-| **Gemma-1B** | 1.0B | **69.4%** | **0.721** | 88ms | $0 |
-| RoBERTa-large | 355M | 68.8% | 0.720 | — | $0 (needs GPU) |
-| RoBERTa-base | 125M | 68.4% | 0.716 | — | $0 (needs GPU) |
-| Qwen-0.5B | 500M | 67.6% | 0.698 | 56ms | $0 |
-| Gemma-270M | 270M | 67.0% | 0.688 | 60ms | $0 |
-| TinyLlama-1.1B | 1.1B | 64.7% | 0.589 | 53ms | $0 |
-| SmolLM-135M | 135M | 64.3% | 0.661 | 72ms | $0 |
-| SmolLM-360M | 360M | 63.4% | 0.650 | 73ms | $0 |
-| NLI zero-shot | 184M | 50.7% | 0.485 | — | $0 |
+All models are LoRA adapters — small, fast to download, and easy to swap.
+
+### Baselines (for reference)
+
+| Model | Params | Bal. Acc. | F1 | Notes |
+|-------|--------|-----------|-----|-------|
+| RoBERTa-large (fine-tuned) | 355M | 68.8% | 0.720 | Encoder baseline |
+| RoBERTa-base (fine-tuned) | 125M | 68.4% | 0.716 | Encoder baseline |
+| DeBERTa-v3 NLI (zero-shot) | 184M | 50.7% | 0.485 | No training needed |
 
 A few things stood out:
+
 - Gemma-1B edges past both RoBERTa baselines, which is interesting since generative models don't usually beat encoders on classification tasks
-- Architecture matters more than raw size. Gemma-270M beats TinyLlama-1.1B despite having 4x fewer parameters
-- All fine-tuned models dramatically beat the zero-shot NLI approach (+13-19 points), confirming that task-specific training is essential here
+- Architecture matters more than raw size — Gemma-270M beats TinyLlama-1.1B despite having 4x fewer parameters
+- All fine-tuned models dramatically beat the zero-shot NLI approach (+13-19 points), confirming that task-specific training is essential
 
 ## Quick Start
 
@@ -72,6 +95,7 @@ The logit comparison (what we call "constrained decoding") is important. When we
 ## Training your own
 
 ### Data setup
+
 ```bash
 python scripts/download_datasets.py
 python scripts/preprocess_datasets.py
@@ -80,6 +104,7 @@ python scripts/preprocess_datasets.py
 This pulls RAGBench (95K examples), RAGTruth (18K), and HaluBench (15K), converts them to a unified format, and creates train/val/test splits.
 
 ### Training
+
 ```bash
 # Train Gemma-270M (smallest, good for experimentation)
 python scripts/train_slm.py --model gemma3_270m --max_train_samples 40000 --epochs 3
@@ -93,6 +118,7 @@ On a T4 GPU (Google Colab free tier), Gemma-270M takes about 2 hours. On an A100
 ### Colab notebooks
 
 If you don't have a local GPU:
+
 - [MicroGuard_A100.ipynb](notebooks/MicroGuard_A100.ipynb) — runs everything end-to-end on a paid A100 (~5 hours)
 - [MicroGuard_Colab_Resume.ipynb](notebooks/MicroGuard_Colab_Resume.ipynb) — designed for the free tier, saves checkpoints to Drive so you don't lose progress on disconnects
 
@@ -116,6 +142,7 @@ MicroGuard/
 ## Limitations
 
 Worth being upfront about:
+
 - 69% balanced accuracy means roughly 1 in 3 unfaithful answers slip through. This is useful as a pre-filter but not a standalone quality gate.
 - Trained on English data only. Multilingual RAG would need separate fine-tuning.
 - The binary faithful/unfaithful split doesn't capture severity. An answer that gets one date wrong and an answer that fabricates an entire paragraph both get the same label.
@@ -124,13 +151,13 @@ Worth being upfront about:
 ## Citation
 
 ```bibtex
-@article{microguard2026,
+@article{sharma2026microguard,
   title={MicroGuard: Sub-Billion Parameter Faithfulness Classification
          for Real-Time Retrieval-Augmented Generation Quality Assurance},
   author={Sharma, Tarun},
   journal={IEEE Access},
   year={2026},
-  note={Under review}
+  note={Under review. DOI pending.}
 }
 ```
 
