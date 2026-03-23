@@ -6,7 +6,6 @@ A 270M model outperforms a 1.1B model. All models run locally in <100ms at $0/ev
 [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE)
 [![Models on HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Models-HuggingFace-yellow)](https://huggingface.co/tarun5986)
 [![Demo](https://img.shields.io/badge/%F0%9F%8E%AE%20Live-Demo-blue)](https://huggingface.co/spaces/tarun5986/MicroGuard)
-[![Paper](https://img.shields.io/badge/Paper-IEEE%20Access-orange)]()
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue)]()
 
 ---
