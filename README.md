@@ -29,15 +29,17 @@ MicroGuard takes a different approach: fine-tune small language models (135M-1B 
 
 ## Available Models
 
-| Model | Params | Bal. Acc. | F1 | Latency | HuggingFace |
-|-------|--------|-----------|-----|---------|-------------|
-| **Gemma-1B** | 1.0B | **69.4%** | **0.721** | 88ms | [Download](https://huggingface.co/tarun5986/MicroGuard-Gemma-1B) |
-| Qwen-0.5B | 500M | 67.6% | 0.698 | 56ms | [Download](https://huggingface.co/tarun5986/MicroGuard-Qwen-0.5B) |
-| Gemma-270M | 270M | 67.0% | 0.688 | 60ms | [Download](https://huggingface.co/tarun5986/MicroGuard-Gemma-270M) |
-| TinyLlama-1.1B | 1.1B | 64.7% | 0.589 | 53ms | [Download](https://huggingface.co/tarun5986/MicroGuard-TinyLlama-1.1B) |
-| SmolLM-135M | 135M | 64.3% | 0.661 | 72ms | [Download](https://huggingface.co/tarun5986/MicroGuard-SmolLM-135M) |
+With calibrated threshold (post-hoc optimization, no retraining needed):
 
-All models are LoRA adapters — small, fast to download, and easy to swap.
+| Model | Params | Bal. Acc. | Unfaith. Recall | Latency | HuggingFace |
+|-------|--------|-----------|-----------------|---------|-------------|
+| **Gemma-1B** | 1.0B | **73.3%** | **69.2%** | 88ms | [Download](https://huggingface.co/tarun5986/MicroGuard-Gemma-1B) |
+| **Qwen-0.5B** | 500M | **72.2%** | **70.1%** | 56ms | [Download](https://huggingface.co/tarun5986/MicroGuard-Qwen-0.5B) |
+| Gemma-270M | 270M | 67.0% | 44.4% | 60ms | [Download](https://huggingface.co/tarun5986/MicroGuard-Gemma-270M) |
+| TinyLlama-1.1B | 1.1B | 64.7% | 65.4% | 53ms | [Download](https://huggingface.co/tarun5986/MicroGuard-TinyLlama-1.1B) |
+| SmolLM-135M | 135M | 64.3% | 54.0% | 72ms | [Download](https://huggingface.co/tarun5986/MicroGuard-SmolLM-135M) |
+
+All models are LoRA adapters — small, fast to download, and easy to swap. Calibrated threshold (0.9) is applied by default in the MicroGuard package to catch more hallucinations.
 
 ### Baselines (for reference)
 
