@@ -149,18 +149,6 @@ Worth being upfront about:
 - The binary faithful/unfaithful split doesn't capture severity. An answer that gets one date wrong and an answer that fabricates an entire paragraph both get the same label.
 - Longer contexts get truncated to ~900 characters. If the relevant evidence is buried deep in the retrieved passage, the model might miss it.
 
-## Citation
-
-```bibtex
-@article{sharma2026microguard,
-  title={MicroGuard: Sub-Billion Parameter Faithfulness Classification
-         for Real-Time Retrieval-Augmented Generation Quality Assurance},
-  author={Sharma, Tarun},
-  journal={IEEE Access},
-  year={2026},
-  note={Under review. DOI pending.}
-}
-```
 
 ## License
 
